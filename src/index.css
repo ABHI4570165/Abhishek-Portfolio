@@ -1,0 +1,589 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap');
+
+/* ========================================= */
+/* 1. GLOBAL RESET & VARIABLES               */
+/* ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-dark: #020617;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.5);
+  --text-white: #ffffff;
+  --text-gray: #cbd5e1;
+  --glass-bg: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: #1e293b; 
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  
+  /* CRITICAL: Pushes content down so the fixed navbar doesn't cover the Hero section */
+  padding-top: 100px; 
+  
+  /* Cyber Grid Background */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Background Glow Spot (Center of screen) */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  z-index: -1; pointer-events: none;
+}
+
+.container {
+  width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px;
+}
+
+/* ========================================= */
+/* 2. NAVBAR STYLES                          */
+/* ========================================= */
+.navbar {
+  position: fixed; /* Fixes navbar to the top */
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  z-index: 1000;
+  
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px 5%;
+  
+  /* Solid Background to hide content scrolling behind it */
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Outfit', sans-serif; 
+}
+
+.logo { 
+  font-size: 2rem;
+  font-weight: bold; 
+  color: var(--accent); 
+  letter-spacing: 1px;
+  flex: 1;
+}
+
+/* Gradient Text Effect */
+.text-gradient {
+  background: linear-gradient(90deg, #38bdf8, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation Links Container */
+.nav-links { 
+  display: none; /* Hidden by default on Mobile, toggled via JS */
+  gap: 40px;
+  flex: 2; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.nav-links a { 
+  color: var(--text-gray); 
+  text-decoration: none; 
+  font-weight: 500; 
+  font-size: 2.2rem; /* Adjusted for better fit */
+  transition: color 0.3s; 
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* Right Side (PC Button + Hamburger) */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Hamburger Menu Icon */
+.menu-icon { 
+  font-size: 1.5rem; 
+  cursor: pointer; 
+  display: block; 
+  color: white;
+  user-select: none;
+}
+
+/* ========================================= */
+/* 3. BUTTON STYLES                          */
+/* ========================================= */
+.btn-cv {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 2rem; /* Adjusted for better fit */
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-cv:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Visibility Logic for Button (Mobile vs PC) */
+.btn-pc { display: none; }         /* Hidden on Mobile */
+.btn-mobile { display: block; margin-top: 15px; } /* Visible in Menu on Mobile */
+
+
+/* ========================================= */
+/* 4. HERO SECTION                           */
+/* ========================================= */
+.hero { 
+  padding: 60px 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+}
+
+.hero-card { width: 100%; }
+
+.hero-img-container {
+  position: relative; width: 140px; height: 140px; margin: 0 auto 20px;
+}
+
+.hero-img {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+  position: relative; z-index: 2;
+}
+
+/* Spinning Ring Animation */
+.hero-img-container::after {
+  content: ''; position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 50%; border: 5px dashed rgba(56, 189, 248, 0.3);
+  animation: spin 10s linear infinite; z-index: 1;
+}
+
+.hero h1 { font-size: 2.8rem; margin: 10px 0; line-height: 1.2; font-family: 'Outfit', sans-serif; }
+.hero p { color: var(--text-gray); line-height: 1.6; max-width: 500px; margin: 0 auto 30px; }
+
+.btn-container { display: flex; gap: 15px; justify-content: center; }
+.btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.2s; }
+.btn:hover { transform: translateY(-3px); }
+.btn-primary { background: var(--accent); color: #000; }
+.btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+
+/* ========================================= */
+/* 5. SECTIONS (Skills, Projects, etc)       */
+/* ========================================= */
+.section-title {
+  text-align: center; font-size: 2rem; margin: 80px 0 50px;
+  color: var(--text-white); text-transform: uppercase; letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skill-box {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex; flex-direction: column; align-items: center;
+}
+.skill-box:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.2); }
+.skill-title { font-size: 1.5rem; font-weight: 700; color: var(--text-white); margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
+.skill-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.skill-tag { background: rgba(255, 255, 255, 0.05); color: var(--text-gray); padding: 10px 18px; border-radius: 50px; font-size: 0.95rem; font-weight: 500; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; }
+.skill-icon-wrapper { font-size: 1.2rem; display: flex; align-items: center; }
+.skill-tag:hover { background: rgba(56, 189, 248, 0.1); color: var(--text-white); border-color: var(--accent); transform: translateY(-3px); }
+
+/* Projects Grid */
+.projects-container { display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 50px; }
+
+.project-card { 
+  background: var(--card-bg); border-radius: 20px; padding: 25px; 
+  border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+  display: flex; flex-direction: column; text-align: left; transition: transform 0.3s; 
+}
+.project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.project-image { width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 12px; margin-bottom: 20px; background-color: #0f172a; border: 1px solid rgba(255,255,255,0.05); }
+.project-card h3 { margin: 0 0 10px 0; font-size: 1.5rem; color: var(--text-white); font-family: 'Outfit', sans-serif; }
+.project-desc { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+.tag { display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 8px; margin-bottom: 10px; }
+
+.project-btn-row { display: flex; gap: 15px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+.small-btn { flex: 1; text-align: center; padding: 10px 0; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+.small-btn:first-child { background: var(--accent); color: #000; }
+.small-btn:last-child { background: rgba(255,255,255,0.1); color: white; }
+
+/* --- CONTACT SECTION --- */
+.contact-section { 
+  padding: 80px 0;
+  /* Matching Dark Blue Background */
+  background-color: #0f172a; 
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Left Side Styling */
+.contact-left {
+  text-align: left;
+}
+
+.contact-title {
+  font-size: 3.5rem; /* Adjusted for desktop */
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--text-white);
+  font-family: 'Outfit', sans-serif;
+}
+
+.contact-subtitle {
+  font-size: 1.5rem; /* Adjusted for desktop */
+  color: var(--text-gray);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Right Side Styling */
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 500px; /* Prevent it from stretching too wide */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem; /* Adjusted for desktop */
+  position: relative;
+  width: 100%; /* Ensure it takes full width for wrapping */
+}
+
+/* ICONS (SVG Styling) */
+.contact-icon {
+  width: 30px;  /* Explicit width ensures visibility */
+  height: 30px; /* Explicit height ensures visibility */
+  color: var(--accent); /* Blue Color */
+  flex-shrink: 0;
+}
+
+/* Links */
+.contact-item a {
+  color: var(--text-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  word-break: break-all; /* Ensure long links wrap */
+}
+
+.contact-item a:hover {
+  color: var(--accent);
+}
+
+/* Copy Button Styling */
+.copy-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-gray);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+/* Style the SVG inside the copy button */
+.copy-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.copy-btn:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* "Copied" Feedback Tooltip */
+.copy-feedback {
+  position: absolute;
+  right: -80px;
+  background-color: var(--accent);
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* ========================================= */
+/* 6. PC VIEW (Desktop Media Query)          */
+/* ========================================= */
+@media (min-width: 1024px) {
+  /* Hide Hamburger Icon on PC */
+  .menu-icon { display: none; }
+  
+  /* Show Links horizontally */
+  .nav-links { display: flex; }
+  
+  /* PC VISIBILITY LOGIC: Show PC button, Hide Mobile button */
+  .btn-pc { display: block; } 
+  .btn-mobile { display: none; } 
+
+  .hero { margin: 40px auto; max-width: 1000px; }
+  .hero-card {
+    display: flex; align-items: center; gap: 60px;
+    background: rgba(15, 23, 42, 0.6); padding: 60px;
+    border-radius: 24px; border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px); text-align: left;
+  }
+  .hero-img-container { margin: 0; width: 220px; height: 220px; flex-shrink: 0; }
+  .hero p { margin: 0 0 30px 0; }
+  .hero h1 { font-size: 3.5rem; }
+  .btn-container { justify-content: flex-start; }
+
+  /* 3 Columns for Projects on PC */
+  .projects-container { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ========================================= */
+/* 7. MOBILE RESPONSIVENESS                  */
+/* ========================================= */
+@media (max-width: 768px) {
+  /* Stack skills vertically on mobile */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* MOBILE MENU LOGIC */
+  .nav-links {
+    position: absolute;
+    top: 100%; /* Positions menu right below the header */
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Layout */
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 25px;
+    
+    /* Initially Hidden (display:none set in base styles) */
+    display: none; 
+    z-index: 999;
+  }
+  
+  /* Show menu when React adds 'active' class */
+  .nav-links.active {
+    display: flex;
+  }
+  
+  /* Contact Section Responsiveness */
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center; /* Center everything */
+    text-align: center;
+    gap: 30px;
+  }
+  
+  .contact-left {
+    text-align: center;
+    width: 100%;
+  }
+
+  .contact-title { font-size: 2.5rem; } /* Smaller font for mobile */
+  .contact-subtitle { font-size: 1.2rem; } /* Smaller font for mobile */
+
+  .contact-right {
+    width: 100%;
+    align-items: center; /* Center the list items */
+  }
+
+  .contact-item {
+    font-size: 1rem; /* Smaller font for mobile links */
+    justify-content: center; /* Center icons and text */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+  }
+
+  .contact-item a {
+    text-align: center;
+    max-width: 80vw; /* Prevent overflow */
+    overflow-wrap: break-word; /* Break long words */
+  }
+
+  /* Adjust copy feedback position for mobile */
+  .copy-feedback {
+    right: auto;
+    top: -30px; /* Show above button */
+  }
+}
+@media (max-width: 1024px) {
+  
+  .hero-socials {
+    justify-content: flex-start; /* Align icons to the left on PC */
+    padding-left: 10px; /* Slight alignment adjustment */
+  }
+  /* Stack skills vertically on smaller screens */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* MOBILE MENU LOGIC */
+  .nav-links {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 25px;
+    
+    display: none; 
+    z-index: 999;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  /* --- CONTACT SECTION CENTERING FIX --- */
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center; /* Forces everything to center horizontally */
+    text-align: center;  /* Centers text inside blocks */
+    gap: 40px;
+  }
+  
+  .contact-left {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-title { font-size: 2.5rem; }
+  .contact-subtitle { font-size: 1.2rem; }
+
+  .contact-right {
+    width: 100%;
+    align-items: center; /* CRITICAL: Centers the flex items (links) */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-item {
+    font-size: 1rem;
+    justify-content: center; /* CRITICAL: Centers the icon+text group */
+    width: 100%;
+    flex-wrap: wrap; /* Allows wrapping for long emails */
+  }
+
+  .contact-item a {
+    text-align: center;
+    max-width: 90vw; /* Prevents overflow */
+    overflow-wrap: break-word; 
+  }
+
+  /* Fix Copy Button Position on Mobile */
+  .copy-feedback {
+    right: auto;
+    top: -35px; /* Moves "Copied!" message above the button */
+  }
+}
+
+/* ========================================= */
+/* HERO SOCIAL ICONS STYLES                  */
+/* ========================================= */
+
+.hero-socials {
+  display: flex;
+  gap: 25px; /* Space between icons */
+  margin-top: 40px; /* Space between buttons and icons */
+  justify-content: center;
+  
+}
+
+.hero-social-link {
+  color: var(--text-gray);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sizing the SVG Icons */
+.hero-social-link svg {
+  width: 50px;
+  height: 50px;
+}
+
+/* Hover Effect: Glow Blue and Move Up */
+.hero-social-link:hover {
+  color: var(--accent);
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
