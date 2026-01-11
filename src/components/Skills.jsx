@@ -1,4 +1,4 @@
-import { skillsData } from '../data/skills';
+import { skillsData } from '../Data/skills';
 
 // --- 1. MAKE SURE THIS LINE EXISTS ---
 const Skills = () => {

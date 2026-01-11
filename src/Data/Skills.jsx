@@ -1,4 +1,4 @@
-// src/data/skills.jsx
+// src/Data/skills.jsx
 
 // 1. Import VscVscode from the correct package
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaJava, FaGitAlt, FaGithub, FaDatabase } from "react-icons/fa";
