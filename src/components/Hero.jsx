@@ -16,7 +16,7 @@ const Hero = () => {
 
         <div className="hero-content">
           <h1>Hi, I'm <br />
-            <span className="text-gradient">ABHISHEK</span>
+            <span className="text-gradient">ABHISHEK Y S</span>
           </h1>
           <p>
             To pursue my career in an organization with performance-oriented environment for achievement of personal advancement. Being ambitious and hardworking, I am looking forward to challenging my potential and be worthy of Management trust and confidence.
