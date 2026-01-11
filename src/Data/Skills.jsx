@@ -1,6 +1,4 @@
-// src/Data/skills.jsx
 
-// 1. Import VscVscode from the correct package
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaJava, FaGitAlt, FaGithub, FaDatabase } from "react-icons/fa";
 import { SiBootstrap, SiTailwindcss, SiMysql, SiPostman, SiVercel, SiEclipseide } from "react-icons/si"; // Removed SiVisualstudiocode from here
 import { BiLogoSpringBoot } from "react-icons/bi";

@@ -22,9 +22,7 @@ const Navbar = () => {
         <span className="text-gradient">MyPortfolio</span>
       </div>
       
-      {/* Nav Links Container 
-        Added logic: if isOpen is true, add 'active' class to show menu on mobile
-      */}
+      {/* Nav Links Container */}
       <div className={`nav-links ${isOpen ? 'active' : ''}`}>
         <a href="#home" onClick={closeMenu}>Home</a>
         <a href="#skills" onClick={closeMenu}>Skills</a>
