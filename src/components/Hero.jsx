@@ -19,7 +19,7 @@ const Hero = () => {
             <span className="text-gradient">ABHISHEK Y S</span>
           </h1>
           <p>
-            To pursue my career in an organization with performance-oriented environment for achievement of personal advancement. Being ambitious and hardworking, I am looking forward to challenging my potential and be worthy of Management trust and confidence.
+            I am a motivated Full Stack Developer with hands-on experience in developing end-to-end web applications using modern frontend and backend technologies. I have a strong understanding of REST APIs, databases, and responsive UI design. I am a quick learner, proactive problem solver, and eager to contribute to scalable, real-world projects..
           </p>
 
           {/* Buttons */}
