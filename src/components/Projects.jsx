@@ -8,7 +8,7 @@ const Projects = () => {
     techStack: ["HTML5", "CSS3", "Java Script"],
     demo: "https://modren-calculator.vercel.app/",
     source: "https://github.com/ABHI4570165/Modren-Calculator.git",
-    image: "/Modren-Calculator.png" // Replace with project screenshots
+    image: "/Modren-Calculator.png"
   },
   {
     id: 2,
@@ -18,6 +18,15 @@ const Projects = () => {
     demo: "https://food-application-mocha.vercel.app/",
     source: "https://github.com/ABHI4570165/Food-Application.git",
     image: "/foodApp.png"
+  },
+  {
+    id: 3,
+    title: "Rock Paper Scissor Game",
+    description: "A web-based Rock-Paper-Scissors game that allows users to play against the computer. The game features a simple and intuitive interface, score tracking, and responsive design for an engaging user experience.",
+    techStack: ["HTML5", "CSS3", "java Script"],
+    demo: "https://rock-paper-scissor-six-vert.vercel.app/",
+    source: "https://github.com/ABHI4570165/rock-paper-scissor.git",
+    image: "/rock-paper-scissor.png"
   }
 ];
 
